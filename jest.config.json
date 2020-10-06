@@ -1,0 +1,8 @@
+{
+  "testEnvironment": "node",
+  "setupFilesAfterEnv": ["dotenv/config"],
+  "testTimeout": 20000,
+  "coveragePathIgnorePatterns": ["/node_modules/"],
+  "globalSetup": "<rootDir>jest.start.js",
+  "testRegex": "__tests__/.*.(test|spec).js$"
+}

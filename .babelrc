@@ -1,0 +1,39 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "syntax-async-functions",
+    [
+      "transform-regenerator",
+      {
+        "asyncGenerators": true,
+        "generators": true,
+        "async": false
+      }
+    ],
+    "transform-object-rest-spread",
+
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "routes": "./src/routes",
+          "controllers": "./src/controllers",
+          "models": "./src/models",
+          "schemas": "./src/schemas",
+          "utils": "./src/utils",
+          "middlewares": "./src/middlewares",
+          "database": "./src/database"
+        }
+      }
+    ]
+  ]
+}

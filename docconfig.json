@@ -1,0 +1,26 @@
+{
+  "plugins": ["jsdoc-route-plugin"],
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": false
+    }
+  },
+  "opts": {
+    "encoding": "utf8",
+    "recurse": true,
+    "private": false,
+    "lenient": true,
+    "destination": "./docs",
+    "template": "./node_modules/@pixi/jsdoc-template"
+  },
+
+  "pixi": {
+    "styles": ["styles/docstyles.css"]
+  }
+}

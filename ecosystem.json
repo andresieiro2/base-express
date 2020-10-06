@@ -1,0 +1,49 @@
+{
+  "apps": [
+    {
+      "name": "nodebase-prod",
+      "script": "build/api.js",
+      "instances": 1,
+      "autorestart": true,
+      "max_restarts": 10,
+      "log_date_format": "YYYY-MM-DD HH:mm",
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    },
+    {
+      "name": "nodebase-hml",
+      "script": "build/api.js",
+      "instances": 1,
+      "autorestart": true,
+      "max_restarts" : 10,
+      "log_date_format": "YYYY-MM-DD HH:mm",
+      "env_homolog": {
+        "NODE_ENV": "homolog"
+      }
+    }
+  ],
+
+  "deploy": {
+    "production": {
+      "user": "ubuntu",
+      "host":"192.168.0.10",
+      "ref": "origin/master",
+      "repo": "git@github.com:andresieiro2/node-base",
+      "path": "/home/ubuntu/node-base-prod",
+      "pre-deploy": "git reset --hard HEAD && git pull origin master",
+      "post-setup": "ls -la",
+      "post-deploy": "rm -rf node_modules && npm install && npm run build && pm2 startOrRestart ./ecosystem.json --log-date-format='YYYY-MM-DD HH:mm Z' --env production"
+    },
+    "homolog": {
+      "user": "ubuntu",
+      "host": "192.168.0.10",
+      "ref": "origin/homolog",
+      "repo": "git@github.com:andresieiro2/node-base",,
+      "path": "/home/ubuntu/nodebase-homolog",
+      "pre-deploy": "git reset --hard HEAD && git pull origin homolog",
+      "post-setup": "ls -la",
+      "post-deploy": "rm -rf node_modules && npm install && npm run build && pm2 startOrRestart ./ecosystem.json --log-date-format='YYYY-MM-DD HH:mm Z' --env homolog"
+    }
+  }
+}
